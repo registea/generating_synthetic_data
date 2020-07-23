@@ -68,6 +68,73 @@ df_customer$age <- ifelse(df_customer$age < 18, sample(18:29, 1), df_customer$ag
 df_customer$gender <- sample(c('Male','Female'), size = n, prob = c(0.45, 0.55), replace = T)
 ```
 
+The next fields to be populated relate to the customer's martial status, the number of children they have and their living status. These new variables will all be conditioned on the customer's age. As an example, it has been assumed that customers under 30 have 69%
+
+
+```{r age_gender}
+# marital status
+df_customer <-    
+  mutate(df_customer, 
+         marital_status = sapply(age, function(age) {
+           case_when(
+             age <= 30 ~ sample(c('Cohabiting','Married', 'Other', 'Single'), 
+                                size = 1, 
+                                prob = c(0.2, 0.1, 0.01, 0.69), 
+                                replace = T),
+             age <= 40 ~ sample(c('Cohabiting','Married', 'Other', 'Single'), 
+                                size = 1, 
+                                prob = c(0.4, 0.1, 0.01, 0.49), 
+                                replace = T),
+             age <= 50 ~ sample(c('Cohabiting','Married', 'Other', 'Single'), 
+                                size = 1, 
+                                prob = c(0.5, 0.4, 0.01, 0.29), 
+                                replace = T),
+             TRUE ~ sample(c('Cohabiting','Married', 'Other', 'Single'), 
+                           size = 1, 
+                           prob = c(0.09, 0.8, 0.01, 0.1),
+                           replace = T)
+             )}))
+
+
+# No of children
+df_customer <-    
+  mutate(df_customer, 
+         no_children = sapply(age, function(age) {
+           case_when(
+             age <= 20 ~ round(mean(rpois(n = 10, lambda = 0)), 0),
+             age <= 30 ~ round(mean(rpois(n = 10, lambda = 1)), 0),
+             age <= 40 ~ round(mean(rpois(n = 10, lambda = 2)), 0),
+             age <= 50 ~ round(mean(rpois(n = 10, lambda = 2)), 0),
+             TRUE ~ round(mean(rpois(n = 1, lambda = 3)), 0)
+             )}))
+
+# Living status
+df_customer <-    
+  mutate(df_customer, 
+         living_status = sapply(age, function(age) {
+           case_when(
+             age <= 20 ~ sample(c('Living with Parents', 'Private Tenant', 'Council Tenant', 'Homeowner'), 
+                                size = 1, 
+                                prob = c(0.9, 0.01, 0.08, 0.01), 
+                                replace = T),             
+             age <= 30 ~ sample(c('Living with Parents', 'Private Tenant', 'Council Tenant', 'Homeowner'), 
+                                size = 1, 
+                                prob = c(0.6, 0.1, 0.1, 0.2), 
+                                replace = T),
+             age <= 40 ~ sample(c('Living with Parents', 'Private Tenant', 'Council Tenant', 'Homeowner'), 
+                                size = 1, 
+                                prob = c(0.01, 0.33, 0.33, 0.33), 
+                                replace = T),
+             age <= 50 ~ sample(c('Living with Parents', 'Private Tenant', 'Council Tenant', 'Homeowner'), 
+                                size = 1, 
+                                prob = c(0.01, 0.33, 0.33, 0.33), 
+                                replace = T),
+             TRUE ~ sample(c('Living with Parents', 'Private Tenant', 'Council Tenant', 'Homeowner'), 
+                           size = 1, 
+                           prob = c(0.0, 0.1, 0.15, 0.75),
+                           replace = T)
+             )}))
 
 
 
+```
