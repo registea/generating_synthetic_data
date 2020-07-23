@@ -5,7 +5,7 @@ date: "23/07/2020"
 output: github_document
 ---
 
-<center><img src="https://storage.googleapis.com/kaggle-competitions/kaggle/5407/media/housesbanner.png"></center>
+<center><img src="https://github.com/registea/generating_synthetic_data/blob/master/Images/simulation.jpg?raw=true"></center>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

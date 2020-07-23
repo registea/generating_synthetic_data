@@ -1,0 +1,36 @@
+Simulating Data
+================
+registea
+23/07/2020
+
+<center>
+
+<img src="https://github.com/registea/generating_synthetic_data/blob/master/Images/simulation.jpg?raw=true">
+
+</center>
+
+# Introduction
+
+To apply analytics and data science principles, it is necessary to have
+access to data. There are many places where data is freely available,
+some examples are:
+
+  - Kaggle
+  - Wiki
+  - Data.gov
+
+There are instances where open source doesn’t meet your precise data
+needs. In these scenarios, it could be the perfect opportunity to
+generate synthetic data, which can be built and structured to your exact
+requirements.
+
+This post is going to use base R with a little help from the tidyverse,
+to demonstrate how a simple customer dataset can be generated. R
+provides access to popular theoretical probability distributions and
+allows us to sample values from them. Futher to this, there is also
+functionality to sample from an empirical distribution. Utilising these
+two types of distributions, makes it very easy to generate data.
+
+In this notebook, a dataset will be generated for 1 million customers.
+For each customer, data will be created to represent socio-demographics
+and sales information.
