@@ -24,3 +24,11 @@ There are instances where open source doesn't meet your precise data needs. In t
 This post is going to use base R with a little help from the tidyverse, to demonstrate how a simple customer dataset can be generated. R provides access to popular theoretical probability distributions and allows us to sample values from them. Futher to this, there is also functionality to sample from an empirical distribution. Utilising these two types of distributions, makes it very easy to generate data.
 
 In this notebook, a dataset will be generated for 1 million customers. For each customer, data will be created to represent socio-demographics and sales information.
+
+# Generaing data
+
+```{r libraries, echo=FALSE}
+
+# Load libraries
+library(dplyr)
+```
