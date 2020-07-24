@@ -233,17 +233,16 @@ Now that a dataset has been created, we can take a peek at the first 20 rows to 
 knitr::kable(head(df_customer, n = 20), align = c('c','c','c','c','c','c','c','c','c'))
 ```
 
-From the print out above we can see a diverse distribution of data within each field indicating the generation has worked as expected. This is further visualised in the plot below which visualises the sales data across multiple customer attributes.
+From the print out above we can see a diverse distribution of data within each field indicating the generation has worked as expected. This is further visualised in the plot below which visualises the sales data across multiple customer attributes. We can see that some potentially realistic distributions in the data are reflected across different customer cohorts based on age, gender and living_status.
 
-```{r tablehead, echo=FALSE, fig.height=8, fig.width=10}
+```{r graphic, echo=FALSE, fig.width=10}
 # summary visual
 df_customer %>%
   mutate(age = case_when(age <= 21 ~ '18-20',
                          age <= 30 ~ '21-30',
                          age <= 40 ~ '31-40',
                          age <= 50 ~ '41-50',
-                         age <= 60 ~ '51-60',
-                         TRUE ~ '60+'
+                         TRUE ~ '50+'
                          )) %>%
   ggplot(aes(x = living_status, y =sales, fill = gender)) +
   geom_boxplot(alpha = 0.8) +
